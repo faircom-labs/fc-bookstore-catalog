@@ -16,5 +16,4 @@ public class BooksResourceTest {
           .when().get("/books?name=ON THE STEEL BREEZE")
           .then().statusCode(200);
     }
-
 }
