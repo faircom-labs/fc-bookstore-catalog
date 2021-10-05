@@ -2,6 +2,7 @@ package com.faircom.bookstore;
 
 import com.faircom.db.client.rio.annotations.Field;
 import com.faircom.db.client.rio.annotations.Index;
+import com.faircom.db.client.rio.annotations.PersistentRecord;
 import com.faircom.db.client.rio.annotations.Record;
 import com.faircom.db.client.rio.direct.schema.FieldType;
 
@@ -15,7 +16,7 @@ import com.faircom.db.client.rio.direct.schema.FieldType;
                 @Index(fields="bk_cat"),
                 @Index(fields={"bk_name", "bk_cat"})
 })
-public class Book {
+public class Book extends PersistentRecord {
 
     private String name;
     private String category;
