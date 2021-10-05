@@ -27,7 +27,7 @@ public class BooksResource {
 
         filter.add("bk_name", name);
 
-        var books = session.filterRecords(filter, Book.class);
+        var books = session.getRecords(filter, Book.class);
 
         return books;
     }
@@ -43,7 +43,7 @@ public class BooksResource {
 
         filter.add("bk_cat", category);
 
-        var books = session.filterRecords(filter, Book.class);
+        var books = session.getRecords(filter, Book.class);
 
         return books;
     }
