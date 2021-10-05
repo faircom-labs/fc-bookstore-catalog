@@ -13,7 +13,7 @@ public class BooksResourceTest {
     public void testBooksEndpoint() {
 
         given()
-          .when().get("/books?name=ON THE STEEL BREEZE")
+          .when().get("/catalog/books?name=ON THE STEEL BREEZE")
           .then().statusCode(200);
     }
 }
