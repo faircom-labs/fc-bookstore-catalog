@@ -60,7 +60,7 @@
       <artifactId>faircomdb-java-client</artifactId>
       <version>1.0</version>
       <scope>system</scope>
-      <systemPath>${basedir}\src\main\resources\ctreeJTDB.jar</systemPath>
+      <systemPath>${basedir}\src\main\resources\faircomdb-java-client-1.0.jar</systemPath>
     </dependency>
     <dependency>
       <groupId>com.faircom</groupId>
