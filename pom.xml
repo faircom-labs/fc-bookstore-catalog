@@ -1,10 +1,12 @@
 <?xml version="1.0"?>
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.faircom</groupId>
   <artifactId>fc-bookstore-catalog</artifactId>
   <version>1.0.0-SNAPSHOT</version>
+
   <properties>
     <compiler-plugin.version>3.8.1</compiler-plugin.version>
     <maven.compiler.parameters>true</maven.compiler.parameters>
@@ -17,6 +19,7 @@
     <quarkus.platform.version>2.2.3.Final</quarkus.platform.version>
     <surefire-plugin.version>3.0.0-M5</surefire-plugin.version>
   </properties>
+
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -28,6 +31,7 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
+
   <dependencies>
     <dependency>
       <groupId>io.quarkus</groupId>
@@ -60,7 +64,7 @@
       <artifactId>faircomdb-java-client</artifactId>
       <version>1.0</version>
       <scope>system</scope>
-      <systemPath>${basedir}\src\main\resources\faircomdb-java-client-1.0.jar</systemPath>
+      <systemPath>${basedir}\src\main\resources\ctreeJTDB.jar</systemPath>
     </dependency>
     <dependency>
       <groupId>com.faircom</groupId>
@@ -80,6 +84,7 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
   <build>
     <plugins>
       <plugin>
@@ -134,7 +139,7 @@
             <phase>compile</phase>
             <configuration>
               <target>
-                <mkdir dir="${project.build.directory}/data" />
+                <mkdir dir="${project.build.directory}\data" />
               </target>
             </configuration>
             <goals>
@@ -145,6 +150,7 @@
       </plugin>
     </plugins>
   </build>
+
   <profiles>
     <profile>
       <id>native</id>
@@ -181,4 +187,5 @@
       </properties>
     </profile>
   </profiles>
+
 </project>
