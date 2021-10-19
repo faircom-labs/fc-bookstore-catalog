@@ -3,7 +3,6 @@ package com.faircom.bookstore;
 import FairCom.CtreeDb.CTException;
 import com.faircom.db.client.rio.filter.RecordFilter;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
-import org.jboss.resteasy.annotations.jaxrs.QueryParam;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -19,21 +18,29 @@ public class BooksResource {
     @Inject
     DB db;
 
-    @Path("{id}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Book getBookById(@PathParam String id) throws CTException {
+    public List<Book> getBooks() throws CTException {
 
         var session = db.getSession();
 
-        var book = session.getRecord("db_catalog", "tbl_books", Integer.valueOf(id), Book.class);
+        return session.getRecords(Book.class);
+    }
 
-        return book;
+    @Path("/id/{id}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Book getBookById(@PathParam("id") int id) throws CTException {
+
+        var session = db.getSession();
+
+        return session.getRecord("db_catalog", "tbl_books", id, Book.class);
     }
 
     @GET
+    @Path("/name/{name}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Book> getBooksByName(@QueryParam("name") String name) throws CTException {
+    public List<Book> getBooksByName(@PathParam("name") String name) throws CTException {
 
         var session = db.getSession();
 
@@ -41,15 +48,13 @@ public class BooksResource {
 
         filter.add("bk_name", name);
 
-        var books = session.getRecords(filter, Book.class);
-
-        return books;
+        return session.getRecords(filter, Book.class);
     }
 
-    @Path("categories/{category}")
+    @Path("/category/{category}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Book> getBooksByCategory(@PathParam String category) throws CTException {
+    public List<Book> getBooksByCategory(@PathParam("category") String category) throws CTException {
 
         var session = db.getSession();
 
@@ -57,8 +62,6 @@ public class BooksResource {
 
         filter.add("bk_cat", category.toUpperCase(Locale.ROOT));
 
-        var books = session.getRecords(filter, Book.class);
-
-        return books;
+        return session.getRecords(filter, Book.class);
     }
 }
